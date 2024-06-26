@@ -157,14 +157,14 @@ resource "aws_instance" "hashicafe" {
   tags = {
     Name = "${var.prefix}-hashicafe-instance"
   }
-
+}
 resource "aws_eip" "hashicafe" {}
 
 resource "aws_eip_association" "hashicafe" {
   instance_id   = aws_instance.hashicafe.id
   allocation_id = aws_eip.hashicafe.id
 }
-}
+
 # We're using a little trick here so we can run the provisioner without
 # destroying the VM. Do not do this in production.
 
