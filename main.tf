@@ -48,13 +48,6 @@ resource "random_integer" "product" {
   }
 }
 
-data "hcp_packer_artifact" "ubuntu-webserver" {
-  bucket_name  = var.packer_bucket
-  channel_name = var.packer_channel
-  platform     = "aws"
-  region       = var.region
-}
-
 resource "aws_vpc" "hashicafe" {
   cidr_block           = var.address_space
   enable_dns_hostnames = true
@@ -142,7 +135,7 @@ resource "aws_route_table_association" "hashicafe" {
 }
 
 resource "aws_instance" "hashicafe" {
-  ami                         = data.hcp_packer_artifact.ubuntu-webserver.external_identifier
+  ami                         = ami-09042b2f6d07d164a
   instance_type               = var.instance_type
   associate_public_ip_address = true
   subnet_id                   = aws_subnet.hashicafe.id
@@ -164,24 +157,6 @@ resource "aws_instance" "hashicafe" {
   tags = {
     Name = "${var.prefix}-hashicafe-instance"
   }
-
-  lifecycle {
-    precondition {
-      condition     = data.hcp_packer_artifact.ubuntu-webserver.region == var.region
-      error_message = "The selected image must be in the same region as the deployed resources."
-    }
-
-    postcondition {
-      condition     = self.ami == data.hcp_packer_artifact.ubuntu-webserver.external_identifier
-      error_message = "A newer source AMI is available in the HCP Packer channel, please re-deploy."
-    }
-
-    postcondition {
-      condition     = self.public_dns != ""
-      error_message = "EC2 instance must be in a VPC that has public DNS hostnames enabled."
-    }
-  }
-}
 
 resource "aws_eip" "hashicafe" {}
 
