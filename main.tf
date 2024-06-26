@@ -135,7 +135,7 @@ resource "aws_route_table_association" "hashicafe" {
 }
 
 resource "aws_instance" "hashicafe" {
-  ami                         = ami-09042b2f6d07d164a
+  ami                         = "ami-09042b2f6d07d164a"
   instance_type               = var.instance_type
   associate_public_ip_address = true
   subnet_id                   = aws_subnet.hashicafe.id
