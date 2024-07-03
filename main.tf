@@ -9,10 +9,6 @@ terraform {
       source  = "hashicorp/hcp"
       version = "~> 0.82"
     }
-    doormat = {
-      source  = "doormat.hashicorp.services/hashicorp-security/doormat"
-      version = "~> 0.0.2"
-    }
     null = {
       source  = "hashicorp/null"
       version = "~> 3.1"
@@ -26,13 +22,6 @@ terraform {
       version = "~> 4.0"
     }
   }
-}
-provider "doormat" {}
-
-data "doormat_aws_credentials" "creds" {
-  provider = doormat
-
-  role_arn = "arn:aws:iam::685425109301:role/sample_dev-custom_role"
 }
 provider "aws" {
   region = var.region
