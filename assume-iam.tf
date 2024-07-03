@@ -5,7 +5,6 @@
 # For example, you may be copying and pasting your credentials from the doormat
 # UI or running something like the following in your shell:
 #   `eval $(doormat aws export --role arn:aws:iam::123456789012:role/aws_mysandbox_test-developer)`
-provider "aws" {}
 
 output "doormat_role_arn" {
   value = aws_iam_role.sample.arn
@@ -37,7 +36,7 @@ data "aws_iam_policy_document" "assume_sample" {
     ]
     principals {
       type        = "AWS"
-      identifiers = ["arn:aws:iam::397512762488:user/doormatServiceUser"] # infrasec_prod
+      identifiers = ["arn:aws:iam::685425109301:role/aws_lennart_test-developer"] # infrasec_prod
     }
   }
 }
