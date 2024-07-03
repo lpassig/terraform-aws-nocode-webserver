@@ -14,7 +14,7 @@ output "doormat_role_arn" {
   EOT
 }
 
-resource "aws_iam_role" "www-prod" {
+resource "aws_iam_role" "sample" {
   name = "sample_dev-custom_role"
   tags = {
     hc-service-uri = "app.terraform.io/lennart-org/terraform-aws-nocode-webserver"
