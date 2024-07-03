@@ -1,6 +1,6 @@
 # Terraform module aws-nocode-webserver
 
-Provisions an AWS VPC containing an EC2 webserver with a sample HashiCafe website, using a base AMI registered in [HCP Packer](https://www.hashicorp.com/products/packer).
+Provisions an AWS VPC containing an EC2 webserver with a sample HashiCafe website.
 
 Enabled for Terraform Cloud [no-code provisioning](https://developer.hashicorp.com/terraform/cloud-docs/no-code-provisioning/module-design).
 
