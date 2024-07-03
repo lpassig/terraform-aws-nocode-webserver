@@ -27,13 +27,13 @@ terraform {
     }
   }
 }
-#provider "doormat" {}
+provider "doormat" {}
 
-#data "doormat_aws_credentials" "creds" {
-#  provider = doormat
+data "doormat_aws_credentials" "creds" {
+  provider = doormat
 
-#  role_arn = "arn:aws:iam::397512762488:user/doormatServiceUser"
-#}
+  role_arn = "arn:aws:iam::685425109301:role/sample_dev-custom_role"
+}
 provider "aws" {
   region = var.region
 
